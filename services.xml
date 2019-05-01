@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE services[
+	<!ELEMENT services service>
+	<!ELEMENT service (#PCDATA)>
+	<!ATTLIST service name (#PCDATA)>
+]>
+<services>
+    <service name="GitHub">https://status.github.com/messages</service>
+    <service name="BitBucket">https://status.bitbucket.org</service>
+    <service name="GitLab">http://status.gitlab.com</service>
+    <service name="Slack">https://status.slack.com</service>
+</services>

@@ -16,7 +16,10 @@ class Service:
         return self.name
 
     def getStatus(self, update):
-        pass    
+        pass  
+
+    def getURL(self):
+        return self.url  
 
 
 
