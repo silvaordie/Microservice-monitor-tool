@@ -39,4 +39,6 @@ The default build comes with two built-in commands, help and services, where bot
 
 ## Authors
 
-* **José Silva** :  - Fourth Year of Eletrical and Computer Engineering at Instituto Superior Técnico [Email](jose.ferreira.silva@junitec.tecnico.ulisboa.pt)
+* **José Silva** :  - Fourth Year of Eletrical and Computer Engineering at Instituto Superior Técnico 
+E-mail : jose.ferreira.silva@junitec.tecnico.ulisboa.pt
+GitHub Page: [silvaordie](https://github.com/silvaordie)
