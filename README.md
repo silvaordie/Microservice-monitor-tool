@@ -18,10 +18,10 @@ threading
 
  The code was designed to allow the user to add/remove commands as well as services to monitor. This solution offers a class CLI where the interface is implemented as well as two abstract classes/interfaces that allow the user to add/remove services or commands from de CLI.
 
- ###Services 
+ ### Services 
 To add a new service to the CLI, the user should create a new Python class and import it in the CLI.py script implementing the abstract methods defined in the 'Service' class and add the desired service to the configuration file 'services.xml' with it's respective URL. 
 To remove a service from the CLI, the user chould remove it from the configuration file, or you may leave it and remove the "import NameOfDesiredService" line from the CLI script.
 
-###Commands
+### Commands
 To add a new command to the CLI, the procedure is similar to the one for services, simply implement the abstract methods of the Command.py class and add the new command to the configuration file commands.xml.
 To remove a command from the CLI, the procedure is the same as mentioned in the services.
