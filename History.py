@@ -1,15 +1,15 @@
 from Command import Command
 
-class Poll (Command):
+class History (Command):
 
     def __init__(self, id, desc):
         Command.__init__(self, id, desc)
 
 
     def execute(self, service, args):
- 
+        
         if(args):
-            aux = args[0].split("=")
+            aux = args.split("=")
             arg = aux[0]
             if( arg == "only" or arg == "exclude"):
                 params = aux[1].split(",")
@@ -32,7 +32,7 @@ class Poll (Command):
                 print("Unknown argument '" + arg + "'.")
         else:
             for ser in service:
-                state = ser.getStatus(True)
+                state = ser.getStatus(False)
                 name = ser.getName()
                 if(state):
                     print("[" + name + "]" + ":" + state)

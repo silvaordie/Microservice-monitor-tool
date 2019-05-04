@@ -21,5 +21,8 @@ class Service:
     def getURL(self):
         return self.url  
 
+    def setStatus(self, str):
+        self.status = str
+
 
 

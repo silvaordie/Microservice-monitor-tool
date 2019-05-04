@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE services[
-	<!ELEMENT services service>
+	<!ELEMENT services (service+)>
 	<!ELEMENT service (#PCDATA)>
-	<!ATTLIST service name (#PCDATA)>
+	<!ATTLIST service name CDATA "BitBucket">
 ]>
 <services>
     <service name="GitHub">https://status.github.com/messages</service>

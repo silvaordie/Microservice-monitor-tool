@@ -2,10 +2,10 @@ from Service import Service
 import requests
 from bs4 import BeautifulSoup
 
-class BitBucket(Service):
+class Slack (Service):
 
     def __init__(self, url):
-        Service.__init__(self, "bitbucket", "BitBucket", url)
+        Service.__init__(self, "slack", "Slack", url)
 
     def getStatus(self, update):
         if update:
@@ -14,7 +14,7 @@ class BitBucket(Service):
                 try:
                     soup = BeautifulSoup(r.text, 'html.parser')
 
-                    results = soup.find_all('span', attrs={'class':'status font-large'})
+                    results = soup.find_all('h1', attrs={'class':'text_center width_100'})
 
                     self.status = " ".join(results[0].contents[0].split())
                 except:

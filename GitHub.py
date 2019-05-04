@@ -9,11 +9,17 @@ class GitHub (Service):
 
     def getStatus(self, update):
         if update:
-            r = requests.get(self.url)
-            soup = BeautifulSoup(r.text, 'html.parser')
+            try:
+                r = requests.get(self.url)
+                try:
+                    soup = BeautifulSoup(r.text, 'html.parser')
 
-            results = soup.find_all('span', attrs={'class':'status font-large'})
+                    results = soup.find_all('span', attrs={'class':'status font-large'})
 
-            self.status = " ".join(results[0].contents[0].split())
+                    self.status = " ".join(results[0].contents[0].split())
+                except:
+                    self.status = "Uknown HTML configuration"
+            except:
+                self.status = "Unable to reach server"
 
         return self.status

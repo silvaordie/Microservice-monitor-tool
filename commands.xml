@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE commands[
+	<!ELEMENT commands (command*)>
+	<!ELEMENT command (call,description)>
+	<!ATTLIST command name CDATA "">
+    <!ELEMENT call (#PCDATA)>
+    <!ELEMENT description (#PCDATA)>
+]>
+<commands>
+    <command name="Poll">
+        <call>poll</call> 
+        <description>Retrieves the status from of all configured services</description> 
+    </command>
+    <command name="Fetch">
+        <call>fetch</call> 
+        <description>Retrieves the status from of all configured services</description> 
+    </command>
+    <command name="History">
+        <call>history</call> 
+        <description>Outputs all the data from the local storage</description> 
+    </command>
+    <command name="Backup">
+        <call>backup</call> 
+        <description>Backups the current internal state to a file</description> 
+    </command>
+    <command name="Restore">
+        <call>restore</call> 
+        <description>Imports the internal state from another run or app</description> 
+    </command>
+</commands>

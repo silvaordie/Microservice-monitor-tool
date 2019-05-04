@@ -7,7 +7,7 @@ class Command:
         self.com = id
         self.desc = des
 
-    def execute(self, service):
+    def execute(self, service, args):
         pass
 
     def getComand(self):

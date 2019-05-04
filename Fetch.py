@@ -7,23 +7,31 @@ class Fetch (Command):
     period = 5
     run = False
 
-    def __init__(self):
-        Command.__init__(self, "fetch", "Retrieves the status from of all configured services")
+    def __init__(self, id, desc):
+        Command.__init__(self, id, desc)
 
 
     def checkStop(self):
         while(self.run):
             i=input()
+            self.run = False
 
-            if(i=="q" or i=="exit"):
-                self.run = False
-
-    def execute(self, service):
+    def execute(self, service, args):
         
         self.run = True
+        if(args):
+            try:
+                self.period = float(args[0])
+                if(self.period < 0):
+                    print(print("Invalid polling interval"))
+                    return
+            except:
+                print("Invalid polling interval")
+                return
+
 
         threading.Thread(target=self.checkStop).start()
-        print("Polling every " + str(self.period) + " seconds:  (Press 'q' to stop)")
+        print("Polling every " + str(self.period) + " seconds:  (Press enter to stop)")
         for ser in service:
             state = ser.getStatus(True)
             name = ser.getName()
