@@ -8,38 +8,73 @@ class Backup (Command):
 
     def execute(self, service, args):
             
-        if(len(args)  == 2):
-            path = ""
-        elif(len(args) == 3 ):
-            
-            path = args[0]
-            fil = args[1]
-            formating = args[2]
-
-            aux = formating[2:].split("=")
-            
-            arg = aux[0]
-            doc = aux[1]
-            if(formating[:2] == "--" and arg == "format" ):
+        if(len(args)==1):
+            try:
+                fd=open(args[0] + ".txt", "w+")
+                hasformat=False
+                haspath=False
+            except:
+                print("Unable to open input file")
+                return
+        elif(len(args)==2):
+            aux = args[1].split("=")
+            if(aux[0]=="--format"):
+                form = aux[1]
+                hasformat=True
+                haspath=False
                 try:
-                    fd= open(path + fil + "." + doc, "w+")
+                    fd=open(args[0] + "." + form, "w+")  
                 except:
-                    print("Unnable to open output file")
+                    print("Unable to open input file")
+                    return   
+            else:
+                print(args[1])
+                try:
+                    fd=open(args[1] + args[0] + ".txt", "w+")  
+                    hasformat=False
+                    haspath=True
+                except: 
+                    print("Unable to open input file")
+                    return
+        elif(len(args)==3):
+            try:
+                aux = args[2].split("=")
+                if(aux[0]=="--format"):
+                    form = aux[1]
+                    hasformat=True
+                    haspath = True
+                else:
+                    print("Unkown input criteria")
                     return
 
-                for ser in service:
-                    state = ser.getStatus(False)
-                    name = ser.getName()
-                    if(state):
-                        fd.write("[" + name + "]" + ":" + state + "\n")
-                    else:
-                        fd.write("[" + name + "]" + ": No state information available" + "\n")
-
-                print("Backup file named " + fil + "." + doc + " is located at " + path)
-                fd.close()
-            else:
-                print("Unknown format options (--format=csv or --format=txt)")
+                try:
+                    fd=open(args[1] + args[0] + "." + form, "w+")
+                except:
+                    print("Unable to open input file")
+                    return
+            except:
+                print("Unable to open input file")
                 return
         else:
-            print("Not enough input arguments (backup path name --format=#)") 
-            return       
+            print("Invalid number of input arguments")
+            return
+
+        for ser in service:
+            state = ser.getStatus(False)
+            name = ser.getName()
+            if(state):
+                fd.write("[" + name + "]" + ":" + state + "\n")
+            else:
+                fd.write("[" + name + "]" + ": No state information available" + "\n")
+
+        if(hasformat and haspath):
+            print("Backup file named " + args[0] + "." + form + " is located at " + args[1])
+        elif(haspath):
+            print("Backup file named " + args[0] + ".txt" + " is located at " + args[1])
+        elif(hasformat):
+            print("Backup file named " + args[0] + "." + form + " created")
+        else:
+            print("Backup file named " + args[0] + ".txt created")
+
+
+        fd.close()    
