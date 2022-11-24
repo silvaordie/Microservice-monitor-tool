@@ -1,4 +1,4 @@
-# Mercedes.io-Challenge
+# Microservice monitor tool
 
  The present repository includes the files necessary to run a Command Line Interface to check and monitor the state of several micro services such as GitHub, BitBucket, Slack, ... 
 
